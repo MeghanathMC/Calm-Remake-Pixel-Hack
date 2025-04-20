@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm Clone - Pixel Perfect</title>
+    
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --calm-blue: #1E6CF2;
+            --calm-text: #1A1A1A;
+            --calm-gray: #666666;
+        }
+
+        @font-face {
+            font-family: 'Cera Pro';
+            src: url('https://www.calm.com/_next/static/media/CeraPro-Regular.f5bf7d4d.woff2') format('woff2');
+            font-weight: normal;
+        }
+
+        body {
+            font-family: 'Cera Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--calm-text);
+        }
+
+    
+        .nav-link {
+            @apply px-4 py-2 text-gray-600 hover:text-black transition-colors;
+        }
+
+        .primary-button {
+            @apply bg-[#1E6CF2] text-white px-6 py-3 rounded-full hover:bg-blue-600 transition-colors;
+        }
+
+        .hero {
+            @apply min-h-[600px] bg-[#F5F6F7] flex items-center justify-center text-center;
+            background-image: url('https://placehold.co/1920x600/F5F6F7/F5F6F7');
+        }
+
+        .feature-card {
+            @apply p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-shadow;
+        }
+
+        .review-card {
+            @apply p-6 rounded-xl bg-[#1E6CF2] text-white;
+        }
+
+        .modal {
+            @apply fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center;
+        }
+
+        .modal-content {
+            @apply bg-white p-8 rounded-2xl max-w-md w-full mx-4;
+        }
+
+        nav {
+            font-family: 'Cera Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .calm-logo-container {
+            background: linear-gradient(135deg, #4279F4 0%, #2861E8 100%);
+        }
+
+        .from-transparent {
+            --tw-gradient-from: transparent;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+        }
+
+        .via-white\/70 {
+            --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.7), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+        }
+
+        .to-white {
+            --tw-gradient-to: #ffffff;
+        }
+
+        h1, h2 {
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-serif {
+            font-family: "Crimson Text", serif;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .transition-transform {
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        .hover\:-translate-y-1:hover {
+            transform: translateY(-0.25rem);
+        }
+
+        .bg-gradient-to-br {
+            background: linear-gradient(135deg, #4279F4 0%, #2861E8 100%);
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-center {
+            scroll-snap-align: center;
+        }
+
+        .from-\[\#F7F9FC\] {
+            --tw-gradient-from: #F7F9FC;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(247, 249, 252, 0));
+        }
+
+        .from-\[\#4279F4\] {
+            --tw-gradient-from: #4279F4;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(66, 121, 244, 0));
+        }
+
+        .to-\[\#7B4CEC\] {
+            --tw-gradient-to: #7B4CEC;
+        }
+
+        h2, h3, p {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .from-\[\#4FC3F7\] {
+            --tw-gradient-from: #4FC3F7;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(79, 195, 247, 0));
+        }
+
+        .to-\[\#2196F3\] {
+            --tw-gradient-to: #2196F3;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        svg {
+            shape-rendering: geometricPrecision;
+        }
+
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .navbar-scrolled {
+            background-color: white;
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .group:hover svg {
+            color: #4279F4;
+        }
+
+        .transition-transform {
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .nav-link {
+            @apply text-white font-medium transition-colors;
+        }
+
+        .nav-scrolled .nav-link {
+            @apply text-[#1A1A1A];
+        }
+
+        .nav-scrolled {
+            @apply bg-white border-b border-gray-200;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .try-calm-button {
+            @apply bg-[#4279F4] text-white px-8 py-3 rounded-full hover:bg-[#2861E8] transition-colors text-base font-medium whitespace-nowrap;
+        }
+
+        .menu-button {
+            @apply text-white transition-colors;
+        }
+
+        .nav-scrolled .menu-button {
+            @apply text-[#1A1A1A];
+        }
+    </style>
+
+    <!-- Add this to your head section -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+</head>
+<body>
+
+    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-[1400px] mx-auto px-6 h-[72px] flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center" id="initialLogo">
+                    <div class="w-[48px] h-[48px] rounded-[12px] bg-gradient-to-b from-[#4FC3F7] to-[#2196F3] flex items-center justify-center">
+                        <span class="text-white font-script text-2xl">Calm</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="hidden" id="scrolledLogo">
+                    <img src="https://www.calm.com/_next/static/media/calm-logo-blue.87a2d164.svg" alt="Calm" class="h-8">
+                </a>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-8">
+                <div class="flex items-center space-x-8" id="primaryNav">
+                    <a href="#" class="nav-link">Sleep</a>
+                    <a href="#" class="nav-link">Stress & Anxiety</a>
+                    <a href="#" class="nav-link">Mindfulness</a>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="#" class="nav-link">Screening</a>
+                <a href="#" class="nav-link">Calm Health</a>
+                <a href="#" class="nav-link">Continue to app</a>
+                <a href="#" class="try-calm-button">Try Calm for Free</a>
+            </div>
+
+            <button id="aiMoodButton" class="text-[#1A1A1A] hover:text-black transition-colors text-base font-medium flex items-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>AI Mood</span>
+            </button>
+
+            <button class="lg:hidden menu-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-16 6h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen">
+        <div class="absolute inset-0 w-full h-full">
+            <img 
+                src="https://www.calm.com/_next/image?url=%2F_n%2Fimages%2Fhomepage%2Fjasper-lake-hero-banner.webp&w=1920&q=75"
+                alt="Jasper Lake Mountains" 
+                class="w-full h-full object-cover"
+            >
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white"></div>
+        </div>
+
+        <div class="relative z-10 max-w-[1200px] mx-auto px-6 pt-[200px] text-center">
+            <h1 class="text-[56px] leading-[1.1] font-bold text-[#1B3168] mb-4 tracking-[-0.02em] max-w-[800px] mx-auto">
+                Calm your mind. Change your life.
+            </h1>
+            
+            <h2 class="text-[32px] leading-[1.3] text-[#1B3168] font-normal mb-12">
+                The #1 app for sleep, meditation and relaxation
+            </h2>
+
+            <div class="flex justify-center">
+                <a href="#" 
+                   class="bg-gradient-to-r from-[#4279F4] to-[#2861E8] text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-lg font-medium min-w-[240px]">
+                    Try Calm for Free
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">We're here to help you feel better.</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <img src="https://www.calm.com/_next/static/media/sleep.6c3c20c1.svg" alt="Sleep" class="mb-4 w-12 h-12">
+                    <h3 class="text-xl font-bold mb-2">Better Sleep</h3>
+                    <p class="text-gray-600">Fall asleep faster with our guided meditations and sleep stories.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <img src="https://www.calm.com/_next/static/media/stress.cb7479af.svg" alt="Stress" class="mb-4 w-12 h-12">
+                    <h3 class="text-xl font-bold mb-2">Less Stress</h3>
+                    <p class="text-gray-600">Reduce anxiety and stress with mindfulness techniques.</p>
+                </div>
+                
+                        <div class="feature-card">
+                    <img src="https://www.calm.com/_next/static/media/focus.4c86616f.svg" alt="Focus" class="mb-4 w-12 h-12">
+                    <h3 class="text-xl font-bold mb-2">Sharper Focus</h3>
+                    <p class="text-gray-600">Improve concentration and productivity with meditation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#F7F9FC]">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <h2 class="text-[40px] leading-[1.2] font-bold text-[#1B3168] text-center mb-16">
+                Over 2 million 5-star reviews.
+            </h2>
+
+            <div class="relative">
+                <div class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar">
+                    <div class="min-w-[400px] bg-gradient-to-b from-[#4279F4] to-[#2861E8] rounded-[24px] p-8 snap-center">
+                        <div class="mb-6 opacity-20">
+                            <i class="fi fi-rr-bandage text-[48px] text-[#4FC3F7]"></i>
+                        </div>
+                        <p class="text-white text-[24px] leading-[1.4] font-normal mb-6">
+                            When I cannot fall asleep, I turn on this app and am out within 5 minutes.
+                        </p>
+                        <p class="text-white/80 text-lg mb-4">
+                            Brandy from Houston
+                        </p>
+                        <div class="flex gap-1">
+                            <svg class="w-6 h-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <svg class="w-6 h-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="min-w-[400px] bg-gradient-to-b from-[#4279F4] to-[#2861E8] rounded-[24px] p-8 snap-center">
+                        <div class="mb-6 opacity-20">
+                            <i class="fi fi-rr-moon-stars text-[48px] text-[#9C27B0]"></i>
+                        </div>
+                        <p class="text-white text-[24px] leading-[1.4] font-normal mb-6">
+                            I have a very busy brain and can find it hard to unwind. Now a daily practice is actually so wonderful and healing for me.
+                        </p>
+                        <p class="text-white/80 text-lg mb-4">
+                            John from Chicago
+                        </p>
+                        <div class="flex gap-1">
+                        </div>
+                    </div>
+
+                            <div class="min-w-[400px] bg-gradient-to-b from-[#4279F4] to-[#2861E8] rounded-[24px] p-8 snap-center opacity-50">
+                    </div>
+                </div>
+
+                    <!-- Slider Navigation Dots -->
+                <div class="flex justify-center gap-2 mt-8">
+                    <button class="w-2 h-2 rounded-full bg-[#4279F4]"></button>
+                    <button class="w-2 h-2 rounded-full bg-[#4279F4]/30"></button>
+                    <button class="w-2 h-2 rounded-full bg-[#4279F4]/30"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#F7F9FC]">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 -rotate-6">
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/4279F4/FFFFFF?text=Wonder" 
+                        alt="Wonder by Matthew McConaughey" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-serif">WONDER</h3>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/24E4BE/FFFFFF?text=Rain+on+Leaves" 
+                           alt="Rain on Leaves" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-lg">Rain on Leaves</h3>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/1B3168/FFFFFF?text=Nordland+Night+Train" 
+                        alt="The Nordland Night Train" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-serif">THE NORDLAND NIGHT TRAIN</h3>
+                        <p class="text-sm opacity-90">Erik Braa</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/9747FF/FFFFFF?text=Dream+With+Me" 
+                        alt="Dream With Me" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-serif">Dream With Me</h3>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/4279F4/FFFFFF?text=Blue+Train" 
+                        alt="Blue Train" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-lg">Blue Train</h3>
+                        <p class="text-sm opacity-90">Erik Braa</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <img 
+                        src="https://placehold.co/300x400/1B3168/FFFFFF?text=Gently+Back+to+Sleep" 
+                        alt="Gently Back to Sleep" 
+                        class="w-full h-full object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-lg">Gently Back to Sleep</h3>
+                        <p class="text-sm opacity-90">Tamara Levitt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-b from-[#F7F9FC] to-white">
+        <div class="max-w-[600px] mx-auto px-6 text-center">
+            <h2 class="text-[40px] leading-[1.2] font-bold text-[#1B3168] mb-4">
+                Start your free trial of
+            </h2>
+            <h2 class="text-[40px] leading-[1.2] font-bold text-[#1B3168] mb-12">
+                Calm Premium.
+            </h2>
+
+            <div class="relative mb-4">
+                <div class="border border-[#4279F4] rounded-[16px] p-6 flex justify-between items-center bg-white cursor-pointer hover:border-[#2861E8] transition-colors">
+                    <div class="text-left">
+                        <h3 class="text-[24px] font-medium text-[#1A1A1A] mb-1">
+                            Yearly
+                        </h3>
+                        <p class="text-[16px] text-[#666666]">
+                            US$49.99/yr.
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <!-- Free Trial Badge -->
+                        <div class="bg-[#7B4CEC] text-white text-sm font-medium px-4 py-1 rounded-full mb-2">
+                            14-Day Free Trial
+                        </div>
+                        <p class="text-[20px] font-medium text-[#1A1A1A]">
+                            US$4.17/mo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscription Terms -->
+            <p class="text-[14px] text-[#666666] mb-8 px-4">
+                After your free trial, the yearly subscription is US$49.99 and automatically renews each year until cancelled. 
+                <a href="#" class="text-[#666666] underline hover:text-[#1A1A1A]">Terms</a> | 
+                <a href="#" class="text-[#666666] underline hover:text-[#1A1A1A]">Cancel anytime</a>
+            </p>
+
+            <!-- Continue Button -->
+            <button class="w-full bg-gradient-to-r from-[#4279F4] to-[#7B4CEC] text-white text-[18px] font-medium py-4 rounded-full hover:opacity-90 transition-opacity">
+                Continue
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-[#F7F9FC]">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <h2 class="text-[40px] leading-[1.2] font-bold text-[#1B3168] text-center mb-16">
+                Frequently Asked Questions
+            </h2>
+
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-[#1B3168] text-lg font-bold mb-6 tracking-wider">
+                        GENERAL
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What is Calm?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What's included in a Calm subscription?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    Where should I get started once I download the app?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What devices support the Calm app?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    How do I cancel?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[#1B3168] text-lg font-bold mb-6 tracking-wider">
+                        MEDITATION & MINDFULNESS
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What is meditation?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What is mindfulness?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[#1B3168] text-lg font-bold mb-6 tracking-wider">
+                        STRESS & ANXIETY
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    What causes stress and anxiety?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    How can I manage my stress and anxiety?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[#1B3168] text-lg font-bold mb-6 tracking-wider">
+                        SLEEP
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    Why do I have trouble sleeping?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    How can I sleep better naturally?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    Are Sleep Stories® good for kids and adults?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-[#1B3168] text-lg font-bold mb-6 tracking-wider">
+                        SOUNDSCAPES
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    How do different sound frequencies affect your brain?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left border-b border-[#E5E7EB] pb-6 group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[#1B3168] text-lg font-medium group-hover:text-[#4279F4] transition-colors">
+                                    How do binaural beats help improve focus and reduce anxiety?
+                                </h4>
+                                <svg class="w-6 h-6 text-[#1B3168] transform transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1B2144] text-white py-16">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Company</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Meet our Instructor</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Calm Science</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Offers</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Buy a Gift</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Redeem a Gift</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Calm Health</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Calm for Organizations</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Help</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">CCPA Notice</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Opt Out of Targeted Ads</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Cookies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex gap-6 md:justify-end items-start">
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center text-gray-400">
+                <p>Copyright © 2025 Calm. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Mood Modal -->
+    <div id="moodModal" class="fixed inset-0 hidden items-center justify-center z-50 bg-black bg-opacity-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative">
+            <h2 class="text-2xl font-bold text-[#1B3168] mb-8">
+                How are you feeling today?
+            </h2>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <button class="mood-button px-6 py-4 rounded-xl border-2 border-[#4279F4] text-[#1B3168] hover:bg-[#4279F4] hover:text-white transition-all duration-300" data-mood="Anxious">
+                    Anxious
+                </button>
+                <button class="mood-button px-6 py-4 rounded-xl border-2 border-[#4279F4] text-[#1B3168] hover:bg-[#4279F4] hover:text-white transition-all duration-300" data-mood="Stressed">
+                    Stressed
+                </button>
+                <button class="mood-button px-6 py-4 rounded-xl border-2 border-[#4279F4] text-[#1B3168] hover:bg-[#4279F4] hover:text-white transition-all duration-300" data-mood="Tired">
+                    Tired
+                </button>
+                <button class="mood-button px-6 py-4 rounded-xl border-2 border-[#4279F4] text-[#1B3168] hover:bg-[#4279F4] hover:text-white transition-all duration-300" data-mood="Restless">
+                    Restless
+                </button>
+            </div>
+
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Import the script file -->
+    <script src="script.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>
